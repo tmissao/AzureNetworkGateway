@@ -1,0 +1,1 @@
+Azure Vpn Gateway + Hubspoke Topology
