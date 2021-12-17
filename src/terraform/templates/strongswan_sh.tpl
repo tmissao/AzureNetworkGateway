@@ -22,7 +22,7 @@ conn azure-bridge
         leftsubnet=${HOST_SUBNET}
         leftauth=psk
         right=${REMOTE_PUBLIC_IP}
-        rightsubnet={${REMOTE_SUBNET},${REMOTE_SUBNET2}}
+        rightsubnet=${REMOTE_SUBNET}
         rightauth=psk
         ike=aes256-sha256-modp2048!
         esp=aes256-sha256-modp2048!
@@ -40,7 +40,6 @@ ${HOST_PUBLIC_IP} ${REMOTE_PUBLIC_IP} : PSK "${STRONGSWAN_PASSWORD}"
 EOF
 
 sudo iptables -t nat -A POSTROUTING -s ${REMOTE_SUBNET} -d ${HOST_SUBNET} -j MASQUERADE
-sudo iptables -t nat -A POSTROUTING -s ${REMOTE_SUBNET2} -d ${HOST_SUBNET} -j MASQUERADE
 
 sudo sysctl -p /etc/sysctl.conf
 
